@@ -1,9 +1,9 @@
 package com.gjleon.config;
 
-import external.dependecy.Connection;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class ConnectionConfiguration {
@@ -15,12 +15,12 @@ public class ConnectionConfiguration {
     private String password;
 
     @Bean
+    @Primary
     public Connection connectionMySql() {
         return new Connection(url, userName, password);
     }
 
     @Bean(name = "connectionMongoDB")
-//    @Primary
     public Connection connectionMongo() {
         return new Connection("localhost", "devdojoMongo", "goku");
     }

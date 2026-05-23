@@ -1,4 +1,4 @@
-package external.dependecy;
+package com.gjleon.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

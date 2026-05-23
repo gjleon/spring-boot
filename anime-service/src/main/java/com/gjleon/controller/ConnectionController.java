@@ -1,6 +1,6 @@
 package com.gjleon.controller;
 
-import external.dependecy.Connection;
+import com.gjleon.config.Connection;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
