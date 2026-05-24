@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("v1/connections")
 @RequiredArgsConstructor
 public class ConnectionController {
-    private  final Connection connectionMySql;
+    private final Connection connectionMySql;
 
     @GetMapping
     public ResponseEntity<Connection> getConnection() {

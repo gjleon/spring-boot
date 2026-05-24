@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class ProducerUtils {
 
-    public List<Producer> newProducerList(){
+    public List<Producer> newProducerList() {
         var dateTime = "2024-08-06T10:36:59.441524";
         var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS");
         var localDateTime = LocalDateTime.parse(dateTime, formatter);
@@ -23,7 +23,7 @@ public class ProducerUtils {
         return new ArrayList<>(List.of(ufotable, witStudio, studioGhibli));
     }
 
-    public Producer newProducerToSave(){
-        return  Producer.builder().id(99L).name("MAPPA").createdAt(LocalDateTime.now()).build();
+    public Producer newProducerToSave() {
+        return Producer.builder().id(99L).name("MAPPA").createdAt(LocalDateTime.now()).build();
     }
 }

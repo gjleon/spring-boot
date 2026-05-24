@@ -9,10 +9,10 @@ import java.util.List;
 
 @Component
 public class ProducerData {
-    private List<Producer> producers = new ArrayList<Producer>();
+    private final List<Producer> producers = new ArrayList<Producer>();
 
-     {
-        Producer mappa =  Producer.builder().id(1L).name("Mappa").createdAt(LocalDateTime.now()).build();
+    {
+        Producer mappa = Producer.builder().id(1L).name("Mappa").createdAt(LocalDateTime.now()).build();
         Producer kyotoAnimation = Producer.builder().id(2L).name("Kyoto Animation").createdAt(LocalDateTime.now()).build();
         Producer madhouse = Producer.builder().id(3L).name("Madhouse").createdAt(LocalDateTime.now()).build();
 

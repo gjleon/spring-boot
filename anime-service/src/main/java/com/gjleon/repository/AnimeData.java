@@ -8,7 +8,7 @@ import java.util.List;
 
 @Component
 public class AnimeData {
-    private List<Anime> animes = new ArrayList<>();
+    private final List<Anime> animes = new ArrayList<>();
 
     {
         Anime dragonBall = Anime.builder().id(1L).name("Dragon Ball").build();
