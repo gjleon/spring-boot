@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: user-service
+  threads:
+    virtual:
+      enabled: true
+
+logging:
+  level:
+    com.gjleon: debug
+server:
+  port: 8090
+  servlet:
+    context-path: /
+  error:
+    include-stacktrace: on_param
+  tomcat:
+    threads:
+      max: 20
+
+database:
+  url: ${DB_URL:localhost}:${DB_PORT:3306}
+  username: ${LOCAL_USERNAME:root}
+  password: ${LOCAL_PASSWORD:root}

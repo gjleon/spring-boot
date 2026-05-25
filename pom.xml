@@ -8,5 +8,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>anime-service</module>
+        <module>user-service</module>
     </modules>
 </project>
