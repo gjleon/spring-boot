@@ -6,6 +6,7 @@ import com.gjleon.request.UserPutRequest;
 import com.gjleon.response.UserGetResponse;
 import com.gjleon.response.UserPostResponse;
 import com.gjleon.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserPostResponse> save(@RequestBody UserPostRequest request) {
+    public ResponseEntity<UserPostResponse> save(@RequestBody @Valid UserPostRequest request) {
         var userToSave = mapper.toUser(request);
         var userSave = service.save(userToSave);
 
@@ -53,7 +54,7 @@ public class UserController {
 
 
     @PutMapping
-    public ResponseEntity<Void> update(@RequestBody UserPutRequest request) {
+    public ResponseEntity<Void> update(@RequestBody @Valid UserPutRequest request) {
         var userToUpdate = mapper.toUser(request);
         service.update(userToUpdate);
 
