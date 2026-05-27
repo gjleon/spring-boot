@@ -6,6 +6,7 @@ import com.gjleon.request.ProducerPutRequest;
 import com.gjleon.resonse.ProducerGetResponse;
 import com.gjleon.resonse.ProducerPostResponse;
 import com.gjleon.service.ProducerService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -41,7 +42,7 @@ public class ProducerController {
     }
 
     @PostMapping
-    public ResponseEntity<ProducerPostResponse> save(@RequestBody ProducerPostRequest producerPostRequest) {
+    public ResponseEntity<ProducerPostResponse> save(@RequestBody @Valid ProducerPostRequest producerPostRequest) {
         var producer = mapper.toProducer(producerPostRequest);
 
         var producerSaved = service.save(producer);
@@ -60,7 +61,7 @@ public class ProducerController {
     }
 
     @PutMapping
-    public ResponseEntity<Void> update(@RequestBody ProducerPutRequest request) {
+    public ResponseEntity<Void> update(@RequestBody @Valid ProducerPutRequest request) {
         log.debug("Request to update anime: {}", request);
         var producerUpdate = mapper.toProducer(request);
 

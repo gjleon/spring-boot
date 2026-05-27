@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Builder
 public class UserPutRequest {
-    @NotNull(message = "The field 'id' cannot be null ")
+    @NotNull(message = "The field 'id' cannot be null")
     private Long id;
     @NotBlank(message = "The field 'firstName' is required")
     private String firstName;
