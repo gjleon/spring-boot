@@ -1,6 +1,7 @@
 package com.gjleon.service;
 
 import com.gjleon.domain.Anime;
+import com.gjleon.exception.NotFoundException;
 import com.gjleon.repository.AnimeHardCodedRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class AnimeService {
 
     public Anime findByIdOrThrowNotFound(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime not found"));
+                .orElseThrow(() -> new NotFoundException("Anime not found"));
     }
 
     public Anime save(Anime anime) {
