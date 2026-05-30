@@ -1,6 +1,7 @@
 package com.gjleon.service;
 
 import com.gjleon.domain.User;
+import com.gjleon.exception.NotFoundException;
 import com.gjleon.repository.UserHardCodedRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class UserService {
 
     public User findByIdOrThrowNotFound(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+                .orElseThrow(() -> new NotFoundException("User not found"));
     }
 
     public User save(User userToSave) {

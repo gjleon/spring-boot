@@ -20,9 +20,17 @@
         <lombok.version>1.18.38</lombok.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <commons-core.version>0.0.1-SNAPSHOT</commons-core.version>
     </properties>
 
 	<dependencies>
+
+        <dependency>
+            <groupId>com.gjleon</groupId>
+            <artifactId>commons-core</artifactId>
+            <version>${commons-core.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
