@@ -2,21 +2,19 @@ package com.gjleon.service;
 
 import com.gjleon.domain.User;
 import com.gjleon.exception.NotFoundException;
-import com.gjleon.repository.UserHardCodedRepository;
+import com.gjleon.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    private final UserHardCodedRepository repository;
+    private final UserRepository repository;
 
     public List<User> findAll(String firstName) {
-        return firstName == null ? repository.findAll() : repository.findByFirstName(firstName);
+        return firstName == null ? repository.findAll() : repository.findByFirstNameIgnoreCase(firstName);
     }
 
     public User findByIdOrThrowNotFound(Long id) {
@@ -35,7 +33,7 @@ public class UserService {
 
     public void update(User userToUpdate) {
         assertUserExists(userToUpdate.getId());
-        repository.update(userToUpdate);
+        repository.save(userToUpdate);
     }
 
     private void assertUserExists(Long id) {

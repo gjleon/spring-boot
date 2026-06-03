@@ -2,7 +2,7 @@ package com.gjleon.service;
 
 import com.gjleon.cammons.UserUtils;
 import com.gjleon.domain.User;
-import com.gjleon.repository.UserHardCodedRepository;
+import com.gjleon.repository.UserRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -26,7 +26,7 @@ class UserServiceTest {
     @InjectMocks
     private UserService service;
     @Mock
-    private UserHardCodedRepository repository;
+    private UserRepository repository;
     private List<User> userList;
     @InjectMocks
     private UserUtils userUtils;
@@ -51,7 +51,7 @@ class UserServiceTest {
         var user = userList.getFirst();
 
         var expectedUserFound = singletonList(user);
-        BDDMockito.when(repository.findByFirstName(user.getFirstName())).thenReturn(expectedUserFound);
+        BDDMockito.when(repository.findByFirstNameIgnoreCase(user.getFirstName())).thenReturn(expectedUserFound);
 
         var userFound = service.findAll(user.getFirstName());
         Assertions.assertThat(userFound).containsAll(expectedUserFound);
@@ -61,9 +61,9 @@ class UserServiceTest {
     @DisplayName("findAll returns empty list when argument not found")
     void findAll_ReturnsEmptyList_WhenArgumentNotFound() {
         var firstName = "not found";
-        BDDMockito.when(repository.findByFirstName(firstName)).thenReturn(emptyList());
+        BDDMockito.when(repository.findByFirstNameIgnoreCase(firstName)).thenReturn(emptyList());
 
-        var users = repository.findByFirstName(firstName);
+        var users = repository.findByFirstNameIgnoreCase(firstName);
         Assertions.assertThat(users).isNotNull().isEmpty();
     }
 
@@ -128,7 +128,7 @@ class UserServiceTest {
         userToUpdate.setFirstName("Helsing");
 
         BDDMockito.when(repository.findById(userToUpdate.getId())).thenReturn(Optional.of(userToUpdate));
-        BDDMockito.doNothing().when(repository).update(userToUpdate);
+        BDDMockito.when(repository.save(userToUpdate)).thenReturn(userToUpdate);
 
         service.update(userToUpdate);
 
