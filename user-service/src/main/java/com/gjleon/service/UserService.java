@@ -1,12 +1,16 @@
 package com.gjleon.service;
 
 import com.gjleon.domain.User;
+import com.gjleon.exception.EmailAlreadyExistException;
 import com.gjleon.exception.NotFoundException;
 import com.gjleon.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +27,7 @@ public class UserService {
     }
 
     public User save(User userToSave) {
+        assertEmailDoesNotExist(userToSave.getEmail());
         return repository.save(userToSave);
     }
 
@@ -33,11 +38,24 @@ public class UserService {
 
     public void update(User userToUpdate) {
         assertUserExists(userToUpdate.getId());
+        assertEmailDoesNotExist(userToUpdate.getEmail(), userToUpdate.getId());
         repository.save(userToUpdate);
     }
 
     private void assertUserExists(Long id) {
         findByIdOrThrowNotFound(id);
+    }
+
+    private void assertEmailDoesNotExist(String email) {
+        repository.findByEmail(email).ifPresent(this::throwEmailExistException);
+    }
+
+    private void assertEmailDoesNotExist(String email, Long id) {
+        repository.findByEmailAndIdNot(email, id).ifPresent(this::throwEmailExistException);
+    }
+
+    private  void throwEmailExistException(User user) {
+        throw new EmailAlreadyExistException("Email %s already exists".formatted(user.getEmail()));
     }
 
 }

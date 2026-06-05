@@ -2,6 +2,7 @@ package com.gjleon.service;
 
 import com.gjleon.cammons.UserUtils;
 import com.gjleon.domain.User;
+import com.gjleon.exception.EmailAlreadyExistException;
 import com.gjleon.repository.UserRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -93,7 +94,9 @@ class UserServiceTest {
     @DisplayName("save creates an user")
     void save_CreatesUser_WhenSuccessful() {
         var userToSave = userUtils.newUserToSave();
+
         BDDMockito.when(repository.save(userToSave)).thenReturn(userToSave);
+        BDDMockito.when(repository.findByEmail(userToSave.getEmail())).thenReturn(Optional.empty());
 
         var savedUser = service.save(userToSave);
 
@@ -126,8 +129,11 @@ class UserServiceTest {
     void update_UpdatesUser_WhenSuccessful() {
         var userToUpdate = userList.getFirst();
         userToUpdate.setFirstName("Helsing");
+        var email = userToUpdate.getEmail();
+        var id = userToUpdate.getId();
 
-        BDDMockito.when(repository.findById(userToUpdate.getId())).thenReturn(Optional.of(userToUpdate));
+        BDDMockito.when(repository.findById(id)).thenReturn(Optional.of(userToUpdate));
+        BDDMockito.when(repository.findByEmailAndIdNot(email,id)).thenReturn(Optional.empty());
         BDDMockito.when(repository.save(userToUpdate)).thenReturn(userToUpdate);
 
         service.update(userToUpdate);
@@ -146,5 +152,37 @@ class UserServiceTest {
         Assertions.assertThatException()
                 .isThrownBy(() -> service.update(userToUpdate))
                 .isInstanceOf(ResponseStatusException.class);
+    }
+
+    @Test
+    @DisplayName("save throws EmailAlreadyExistException when email already exist")
+    void save_ThrowsEmailAlreadyExistException_WhenEmailAlreadyExist() {
+        var savedUser = userList.getFirst();
+        var userToSave = userUtils.newUserToSave();
+        userToSave.setEmail(savedUser.getEmail());
+        var email = userToSave.getEmail();
+
+        BDDMockito.when(repository.findByEmail(email)).thenReturn(Optional.of(savedUser));
+
+        Assertions.assertThatException()
+                .isThrownBy(() -> service.save(userToSave))
+                .isInstanceOf(EmailAlreadyExistException.class);
+    }
+
+    @Test
+    @DisplayName("update throws EmailAlreadyExistException when email belongs to another user")
+    void update_ThrowsEmailAlreadyExistException_WhenEmailBelongsToAnotherUser() {
+        var userToUpdate = userList.getFirst();
+        var savedUser = userList.getLast();
+        userToUpdate.setEmail(savedUser.getEmail());
+        var id = userToUpdate.getId();
+        var email = userToUpdate.getEmail();
+
+        BDDMockito.when(repository.findById(id)).thenReturn(Optional.of(userToUpdate));
+        BDDMockito.when(repository.findByEmailAndIdNot(email, id)).thenReturn(Optional.of(savedUser));
+
+        Assertions.assertThatException()
+                .isThrownBy(() -> service.update(userToUpdate))
+                .isInstanceOf(EmailAlreadyExistException.class);
     }
 }
