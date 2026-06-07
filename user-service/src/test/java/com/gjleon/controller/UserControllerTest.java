@@ -1,7 +1,7 @@
 package com.gjleon.controller;
 
-import com.gjleon.cammons.FileUtils;
-import com.gjleon.cammons.UserUtils;
+import com.gjleon.commons.FileUtils;
+import com.gjleon.commons.UserUtils;
 import com.gjleon.domain.User;
 import com.gjleon.repository.UserRepository;
 import org.assertj.core.api.Assertions;
@@ -95,7 +95,6 @@ class UserControllerTest {
 
         BDDMockito.when(repository.findById(id)).thenReturn(foundUser);
 
-
         mockMvc.perform(MockMvcRequestBuilders.get(URL + "/{id}", id))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -158,7 +157,6 @@ class UserControllerTest {
     void update_ThrowsNotFound_WhenUserNotFound() throws Exception {
         var request = fileUtils.readResourceFile("user/put-request-user-404.json");
         var response = fileUtils.readResourceFile("user/put-user-by-id-404.json");
-
 
         mockMvc.perform(MockMvcRequestBuilders
                         .put(URL)

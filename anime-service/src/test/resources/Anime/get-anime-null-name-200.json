@@ -1,1 +1,14 @@
-[{"id":1,"name":"One Piece"},{"id":2,"name":"Gintama"},{"id":3,"name":"Samurai X"}]
+[
+  {
+    "id": 1,
+    "name": "One Piece"
+  },
+  {
+    "id": 2,
+    "name": "Gintama"
+  },
+  {
+    "id": 3,
+    "name": "Samurai X"
+  }
+]

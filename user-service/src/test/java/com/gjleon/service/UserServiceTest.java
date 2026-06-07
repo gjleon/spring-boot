@@ -1,6 +1,6 @@
 package com.gjleon.service;
 
-import com.gjleon.cammons.UserUtils;
+import com.gjleon.commons.UserUtils;
 import com.gjleon.domain.User;
 import com.gjleon.exception.EmailAlreadyExistException;
 import com.gjleon.repository.UserRepository;
