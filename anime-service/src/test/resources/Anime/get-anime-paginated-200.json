@@ -1,0 +1,41 @@
+{
+  "content": [
+    {
+      "id": 1,
+      "name": "One Piece"
+    },
+    {
+      "id": 2,
+      "name": "Gintama"
+    },
+    {
+      "id": 3,
+      "name": "Samurai X"
+    }
+  ],
+  "pageable": {
+    "pageNumber": 0,
+    "pageSize": 3,
+    "sort": {
+      "empty": true,
+      "sorted": false,
+      "unsorted": true
+    },
+    "offset": 0,
+    "paged": true,
+    "unpaged": false
+  },
+  "last": true,
+  "totalPages": 1,
+  "totalElements": 3,
+  "size": 3,
+  "number": 0,
+  "sort": {
+    "empty": true,
+    "sorted": false,
+    "unsorted": true
+  },
+  "numberOfElements": 3,
+  "first": true,
+  "empty": false
+}
