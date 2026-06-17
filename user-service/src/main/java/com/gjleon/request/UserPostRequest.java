@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @Builder
 public class UserPostRequest {
-     @NotBlank(message = "The field 'firstName' is required")
+    @NotBlank(message = "The field 'firstName' is required")
     private String firstName;
     @NotBlank(message = "The field 'lastName' is required")
     private String lastName;

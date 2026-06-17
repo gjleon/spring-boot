@@ -133,7 +133,7 @@ class UserServiceTest {
         var id = userToUpdate.getId();
 
         BDDMockito.when(repository.findById(id)).thenReturn(Optional.of(userToUpdate));
-        BDDMockito.when(repository.findByEmailAndIdNot(email,id)).thenReturn(Optional.empty());
+        BDDMockito.when(repository.findByEmailAndIdNot(email, id)).thenReturn(Optional.empty());
         BDDMockito.when(repository.save(userToUpdate)).thenReturn(userToUpdate);
 
         service.update(userToUpdate);

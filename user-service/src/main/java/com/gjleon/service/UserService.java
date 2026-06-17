@@ -6,11 +6,8 @@ import com.gjleon.exception.NotFoundException;
 import com.gjleon.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @Service
 @RequiredArgsConstructor
@@ -54,7 +51,7 @@ public class UserService {
         repository.findByEmailAndIdNot(email, id).ifPresent(this::throwEmailExistException);
     }
 
-    private  void throwEmailExistException(User user) {
+    private void throwEmailExistException(User user) {
         throw new EmailAlreadyExistException("Email %s already exists".formatted(user.getEmail()));
     }
 

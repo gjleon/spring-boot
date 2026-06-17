@@ -6,7 +6,6 @@ import com.gjleon.request.UserPutRequest;
 import com.gjleon.response.UserGetResponse;
 import com.gjleon.response.UserPostResponse;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.factory.Mappers;
 
