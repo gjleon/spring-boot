@@ -3,6 +3,8 @@ package com.gjleon.controller;
 import com.gjleon.commons.FileUtils;
 import com.gjleon.commons.UserUtils;
 import com.gjleon.domain.User;
+import com.gjleon.repository.ProfileRepository;
+import com.gjleon.repository.UserProfileRepository;
 import com.gjleon.repository.UserRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,6 +38,10 @@ class UserControllerTest {
     private MockMvc mockMvc;
     @MockBean
     private UserRepository repository;
+    @MockBean
+    private ProfileRepository profileRepository;
+    @MockBean
+    private UserProfileRepository userProfileRepository;
     private List<User> userList;
     @Autowired
     private FileUtils fileUtils;

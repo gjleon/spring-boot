@@ -4,6 +4,7 @@ import com.gjleon.commons.FileUtils;
 import com.gjleon.commons.ProfileUtils;
 import com.gjleon.domain.Profile;
 import com.gjleon.repository.ProfileRepository;
+import com.gjleon.repository.UserProfileRepository;
 import com.gjleon.repository.UserRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,6 +39,8 @@ class ProfileControllerTest {
     private ProfileRepository repository;
     @MockBean
     private UserRepository userRepository;
+    @MockBean
+    private UserProfileRepository userProfileRepository;
     private List<Profile> profileList;
     @Autowired
     private FileUtils fileUtils;
