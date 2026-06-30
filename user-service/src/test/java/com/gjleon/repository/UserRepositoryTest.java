@@ -2,8 +2,7 @@ package com.gjleon.repository;
 
 import com.gjleon.commons.UserUtils;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -13,7 +12,7 @@ import org.springframework.test.context.jdbc.Sql;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Import(UserUtils.class)
-//@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 //@Transactional(propagation = Propagation.NOT_SUPPORTED)
 class UserRepositoryTest {
 
@@ -23,6 +22,7 @@ class UserRepositoryTest {
     private UserUtils userUtils;
 
     @Test
+    @Order(1)
     @DisplayName("save creates an user")
     void save_CreatesUser_WhenSuccessful() {
         var userToSave = userUtils.newUserToSave();

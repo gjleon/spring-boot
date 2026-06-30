@@ -93,14 +93,14 @@ class UserServiceTest {
     @Test
     @DisplayName("save creates an user")
     void save_CreatesUser_WhenSuccessful() {
-        var userToSave = userUtils.newUserToSave();
+        var userSaved = userUtils.newUserSaved();
 
-        BDDMockito.when(repository.save(userToSave)).thenReturn(userToSave);
-        BDDMockito.when(repository.findByEmail(userToSave.getEmail())).thenReturn(Optional.empty());
+        BDDMockito.when(repository.save(userSaved)).thenReturn(userSaved);
+        BDDMockito.when(repository.findByEmail(userSaved.getEmail())).thenReturn(Optional.empty());
 
-        var savedUser = service.save(userToSave);
+        var savedUser = service.save(userSaved);
 
-        Assertions.assertThat(savedUser).isEqualTo(userToSave).hasNoNullFieldsOrProperties();
+        Assertions.assertThat(savedUser).isEqualTo(userSaved).hasNoNullFieldsOrProperties();
     }
 
     @Test

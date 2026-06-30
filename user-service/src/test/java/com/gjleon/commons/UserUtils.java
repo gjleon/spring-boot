@@ -19,6 +19,19 @@ public class UserUtils {
     }
 
     public User newUserToSave() {
-        return User.builder().id(99L).firstName("Roberval").lastName("Junkeira").email("rjunkeira@tuamae.com").build();
+        return User.builder()
+                .firstName("Yusuke")
+                .lastName("Urameshi")
+                .email("yusuke@yuyuhakusho.com")
+                .build();
+    }
+
+    public User newUserSaved() {
+        return User.builder()
+                .id(99L)
+                .firstName("Yusuke")
+                .lastName("Urameshi")
+                .email("yusuke@yuyuhakusho.com")
+                .build();
     }
 }
