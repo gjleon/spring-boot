@@ -3,6 +3,7 @@ package com.gjleon.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+@With
 @Getter
 @Setter
 @Builder

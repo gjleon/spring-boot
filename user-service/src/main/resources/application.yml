@@ -20,6 +20,7 @@ spring:
 logging:
   level:
     com.gjleon: debug
+    net.ttddyy.dsproxy.listener: debug
 server:
   port: 8090
   servlet:
