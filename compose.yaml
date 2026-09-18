@@ -5,7 +5,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${ENV_ROOT_PASSWORD}
       MYSQL_USER: ${ENV_MYSQL_USER}
-      MYSQL_USER_PASSWORD: ${ENV_MYSQL_USER_PASSWORD}
+      MYSQL_PASSWORD: ${ENV_MYSQL_USER_PASSWORD}
     ports:
       - "3306:3306"
     volumes:

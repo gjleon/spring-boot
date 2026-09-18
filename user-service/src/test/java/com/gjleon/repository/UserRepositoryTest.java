@@ -1,6 +1,8 @@
 package com.gjleon.repository;
 
 import com.gjleon.commons.UserUtils;
+import com.gjleon.config.IntegrationTestConfig;
+import com.gjleon.config.TestcontainersConfiguration;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,7 @@ import org.springframework.test.context.jdbc.Sql;
 @Import(UserUtils.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 //@Transactional(propagation = Propagation.NOT_SUPPORTED)
-class UserRepositoryTest {
+class UserRepositoryTest extends IntegrationTestConfig {
 
     @Autowired
     private UserRepository repository;
@@ -29,7 +31,7 @@ class UserRepositoryTest {
         var savedUser = repository.save(userToSave);
 
         Assertions.assertThat(savedUser).hasNoNullFieldsOrProperties();
-        Assertions.assertThat(savedUser.getId()).isEqualTo(1L);
+        Assertions.assertThat(savedUser.getId()).isNotNull().isPositive();
     }
 
     @Test

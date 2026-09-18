@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.gjleon</groupId>
-	<artifactId>user-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>User Service</name>
-	<description>Projeto Exemplo Spring Boot User Service</description>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.4</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.gjleon</groupId>
+    <artifactId>user-service</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>User Service</name>
+    <description>Projeto Exemplo Spring Boot User Service</description>
 
     <properties>
         <java.version>21</java.version>
@@ -21,9 +21,11 @@
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <commons-core.version>0.0.1-SNAPSHOT</commons-core.version>
-	</properties>
+        <datasource-proxy-spring-boot-starter.version>1.9.2</datasource-proxy-spring-boot-starter.version>
+        <json-unit-assertj.version>3.2.4</json-unit-assertj.version>
+    </properties>
 
-	<dependencies>
+    <dependencies>
 
         <dependency>
             <groupId>com.gjleon</groupId>
@@ -41,10 +43,10 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -60,7 +62,7 @@
         <dependency>
             <groupId>com.github.gavlyukovskiy</groupId>
             <artifactId>datasource-proxy-spring-boot-starter</artifactId>
-            <version>1.9.2</version>
+            <version>${datasource-proxy-spring-boot-starter.version}</version>
         </dependency>
 
 
@@ -70,33 +72,59 @@
             <version>${org.mapstruct.version}</version>
         </dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
 
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>net.javacrumbs.json-unit</groupId>
+            <artifactId>json-unit-assertj</artifactId>
+            <version>${json-unit-assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--container-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-testcontainers</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>mysql</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--container-->
 
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>test</scope>
         </dependency>
-	</dependencies>
-
-	<build>
-		<plugins>
+    </dependencies>
+    <build>
+        <plugins>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -147,6 +175,6 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
-		</plugins>
-	</build>
+        </plugins>
+    </build>
 </project>
